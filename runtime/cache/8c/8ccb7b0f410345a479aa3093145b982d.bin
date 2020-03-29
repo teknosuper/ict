@@ -1,0 +1,1 @@
+a:2:{i:0;a:3:{s:6:"status";i:200;s:13:"error_message";N;s:10:"returnData";a:5:{s:2:"id";i:2;s:4:"host";s:14:"blended.thesis";s:13:"host_template";s:22:"@app/template/adminlte";s:9:"host_logo";s:31:"/images/logo/tridayapp-logo.png";s:6:"status";i:1;}}i:1;N;}
