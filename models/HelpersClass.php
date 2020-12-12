@@ -16,7 +16,7 @@ use Yii;
 class HelpersClass
 {
 
-    public function getExt($fileUrl)
+    public static function getExt($fileUrl)
     {
         $parse_url = pathinfo($fileUrl);
         return $parse_url['extension'];
@@ -29,7 +29,7 @@ class HelpersClass
         // echo "</pre>";
     }    
 
-    public function getPreviewLink($urlPreview)
+    public static function getPreviewLink($urlPreview)
     {
         $ext = self::getExt($urlPreview);
         switch ($ext) {
@@ -56,19 +56,19 @@ class HelpersClass
         }
     }
 
-    public function getUserDefaultProfilePic()
+    public static function getUserDefaultProfilePic()
     {
         return "/images/undefined.png";
     }
 
-    public function getTextClean($text)
+    public static function getTextClean($text)
     {
         $search_array = ['<img '];
         $search_replace = ["<img class='img img-responsive'"];
         return str_replace($search_array,$search_replace, $text);
     }
 
-    public function getStatusListDetail($status)
+    public static function getStatusListDetail($status)
     {
         $array = self::getStatusList();
         return isset($array[$status]) ? $array[$status] : NULL;
