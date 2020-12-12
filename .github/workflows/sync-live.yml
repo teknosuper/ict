@@ -1,4 +1,4 @@
-name: Sync to live blendedforschools.online
+name: Sync to live ictlive.sh
 
 on:
   push:
@@ -9,11 +9,11 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing repo/sync-dms.sh on server
+    - name: executing home/bash/ictlive.sh on server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.LIVE_HOST }}
         username: ${{ secrets.LIVE_USERNAME }}
         port: ${{ secrets.LIVE_PORT }}
         password: ${{ secrets.LIVE_PASSWORD }}
-        script: /home/bash/live.sh
+        script: /home/bash/ictlive.sh
