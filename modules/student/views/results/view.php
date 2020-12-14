@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				                    [
 				                        'attribute' => 'quiz_model',
 				                        'value' => function ($model) {
-				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quiz_model : null;
+				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quizModelDetail : null;
 				                        },
 				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
 				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
@@ -109,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				                    [
 				                        'attribute' => 'quiz_type',
 				                        'value' => function ($model) {
-				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quiz_type : null;
+				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quizFormulaText : null;
 				                        },
 				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
 				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
@@ -170,3 +170,58 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 			</div>
 		</div>
+
+
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">				
+				      <!-- Default box -->
+			      	<div class="box  box-primary box-solid">
+				        <div class="box-header with-border">
+				          <h3 class="box-title">Nilai Kuis Luring</h3>
+				        </div>
+				        <div class="box-body">
+			          		<table class="table table-bordered">
+				          		<?php if($offlineResults):?>
+				          				<tr>
+				          					<th>Soal</th>
+				          					<th>Model</th>
+				          					<th>Tipe Soal</th>
+				          					<th>Nilai</th>
+				          				</tr>
+									<?php foreach($offlineResults as $offlineResultsData):?>
+					          			<tr>
+					          				<td><?= ($offlineResultsData->quizResultsBelongsToQuizModel) ? $offlineResultsData->quizResultsBelongsToQuizModel->title : null;?> </td>
+					          				<td><?= $offlineResultsData->quizModelDetail;?></td>
+					          				<td><?= $offlineResultsData->quizFormulaText;?></td>
+					          				<td><?= $offlineResultsData->grade_point;?></td>
+					          			</tr>
+					          		<?php endforeach;?>
+					          	<?php endif;?>
+			          		</table>
+				        </div>
+			        </div>
+		        </div>
+	        </div>
+        </div>
+
+
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">				
+				      <!-- Default box -->
+			      	<div class="box  box-primary box-solid">
+				        <div class="box-header with-border">
+				          <h3 class="box-title">Nilai Akhir</h3>
+
+				          <div class="box-tools pull-right">
+
+				          </div>
+				        </div>
+				        <div class="box-body">
+
+				        </div>
+			        </div>
+		        </div>
+	        </div>
+        </div>        

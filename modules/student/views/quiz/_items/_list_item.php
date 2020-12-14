@@ -59,7 +59,15 @@
 			            </div>
 			            <!-- /.box-body -->
 			            <div class="box-footer">
-			            	<a href="/student/quiz/preview/<?=$model->id;?>" class="btn btn-block btn-success">Kerjakan Soal</a>
+			            	<?php if($model->quizStatus):?>
+			            		<?php if($model->quizStatus==1):?>
+					            	<a href="/student/quiz/preview/<?=$model->id;?>" class="btn btn-block btn-success">Kerjakan Soal</a>
+					            <?php else:?>
+							         <a href="/student/results" class="btn btn-primary btn-block"><i class="fa fa-book"></i> Lihat Nilai</a>
+			            		<?php endif;?>
+							<?php else:?>	
+				            	<a href="/student/quiz/preview/<?=$model->id;?>" class="btn btn-block btn-success">Kerjakan Soal</a>
+				            <?php endif;?>
 			            </div>
 	          	</div>
             </div>

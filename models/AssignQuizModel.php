@@ -70,6 +70,11 @@ class AssignQuizModel extends \app\models\table\AssignQuizTable
 
     }
 
+    public function getQuizStatus()
+    {
+        return ($this->assignQuizModelBelongsToQuizResultsModel) ? $this->assignQuizModelBelongsToQuizResultsModel->status : null;
+    }
+
     public function getAssignQuizModelBelongsToQuizModel()
     {
         return $this->hasOne(QuizModel::className(),['id'=>'quiz_id']);
