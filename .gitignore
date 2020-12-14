@@ -1,6 +1,7 @@
 # phpstorm project files
 .idea
 config/db-local.php
+runtime
 
 # netbeans project files
 nbproject

@@ -28,6 +28,13 @@ use kartik\widgets\DateTimePicker
 		            // $listData, 
 		            ['prompt'=>'Pilih Kelas']); 
 		        ?>
+
+		        <?= $form->field($model, 'quiz_type')->textInput()->dropDownList(
+		            \app\models\ClassroomsPlanModel::getClassromPlanListByAssignClassroomTeacher($quizModel->teacher_id),
+		            // $listData, 
+		            ['prompt'=>'Pilih Kelas']); 
+		        ?>
+
 		        <?= $form->field($model, 'minutes') ?>
 		        <?php 
 					echo $form->field($model, 'start_time')->widget(DateTimePicker::classname(), [

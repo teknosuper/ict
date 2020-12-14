@@ -20,7 +20,7 @@ $fieldOptions2 = [
             <div class="col-md-6 col-md-offset-3">
                 <div class="well">
                     <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
-                        <img src="/templates/maindashboard/images/logo.png" alt="" />
+                        <img class="text-center img img-responsive" src="/templates/maindashboard/images/logo.png" alt="" />
                         <div class="row">
                             <?= $form
                                 ->field($model, 'username', $fieldOptions1)

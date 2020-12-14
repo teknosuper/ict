@@ -15,7 +15,7 @@ use Yii;
  */
 class AssignQuizModel extends \app\models\table\AssignQuizTable
 {
-    
+
     public $quiz_status;
     public $grade_in_point;
     public $taken;

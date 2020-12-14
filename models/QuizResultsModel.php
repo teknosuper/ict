@@ -40,7 +40,7 @@ class QuizResultsModel extends \app\models\table\QuizResultsTable
         $end_time = $this->quizResultsBelongsToAssignQuiz->end_time;
         $now_time = date('Y-m-d H:i:s');
         $quiz_takenAndminutes = date('Y-m-d H:i:s',strtotime("+{$minutes} minute",strtotime($quiz_taken)));
-        if($now_time > $end_time) 
+        if($now_time > $end_time)
         {
             $this->status = 2;
         	if(!$quiz_taken)
@@ -59,7 +59,7 @@ class QuizResultsModel extends \app\models\table\QuizResultsTable
         	{
 	        	if($now_time > $quiz_takenAndminutes)
 	        	{
-		            $this->status = 3;
+		            // $this->status = 3;
 	        	}        		
         	}
 
@@ -79,11 +79,15 @@ class QuizResultsModel extends \app\models\table\QuizResultsTable
 				# code...
 				break;		
 			case 2:
-				return "<span class='label label-success'>Selesai Dikerjakan</span>";
+				return "<span class='label label-success'><i class='fa fa-times-circle-o'></i> Selesai Dikerjakan & Menunggu dikoreksi</span>";
 				# code...
 				break;						
 			case 3:
 				return "<span class='label label-danger'>Tidak Dikerjakan</span>";
+				# code...
+				break;						
+			case 4:
+				return "<span class='label label-success'><i class='fa fa-check'></i> Sudah Dikoreksi</span>";
 				# code...
 				break;						
 			default:

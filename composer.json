@@ -32,7 +32,8 @@
         "touqeer/yii2-adminlte2-notification": "*",
         "aneeshikmat/yii2-time-down-counter": "v1.0.0-stable",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "miloschuman/yii2-highcharts-widget": "dev-master"
+        "miloschuman/yii2-highcharts-widget": "dev-master",
+        "dmstr/yii2-adminlte-asset": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

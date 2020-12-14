@@ -99,6 +99,22 @@ $this->params['breadcrumbs'][] = $this->title;
 				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
 				                    ],				                    
 				                    [
+				                        'attribute' => 'quiz_model',
+				                        'value' => function ($model) {
+				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quiz_model : null;
+				                        },
+				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
+				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
+				                    ],				                   				                    
+				                    [
+				                        'attribute' => 'quiz_type',
+				                        'value' => function ($model) {
+				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quiz_type : null;
+				                        },
+				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
+				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
+				                    ],				                   				                    
+				                    [
 				                        'label' => 'Nilai',
 				                        'attribute' => 'grade_in_point',
 							         	// 'footer' => 80,

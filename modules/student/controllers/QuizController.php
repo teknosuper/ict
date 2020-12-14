@@ -174,6 +174,7 @@ class QuizController extends \app\controllers\MainController
     {
         if(\yii::$app->user->identity->userType=="student")
         {
+
         	$quiz_id = \yii::$app->request->get('quiz_id');
             $student_id = \yii::$app->user->identity->userBelongsToUserType->id;
         	$getQuizResultsByQuizId = \app\models\QuizResultsModel::find()->where(['quiz_id'=>$quiz_id,'student_id'=>$student_id])->one();
