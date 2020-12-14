@@ -16,6 +16,33 @@ use Yii;
 class QuizResultsModel extends \app\models\table\QuizResultsTable
 {
 
+	const QUIZ_ONLINE = 1;
+	const QUIZ_OFFLINE = 2;
+
+    public static function getQuizModelList()
+    {
+        return [
+            self::QUIZ_ONLINE=>"DARING",
+            self::QUIZ_OFFLINE=>"LURING",
+        ];
+    }
+
+    public function getQuizModelDetail()
+    {
+    	$status = $this->quiz_model;
+        $array = self::getQuizModelList();
+        return isset($array[$status]) ? $array[$status] : NULL;
+    }
+
+    public function getQuizFormulaText()
+    {
+    	return ($this->quizResultsModelToQuizFormulaModel) ? $this->quizResultsModelToQuizFormulaModel->tipe_kuis : $this->quiz_type;
+    }
+
+	public function getQuizResultsModelToQuizFormulaModel()
+	{
+		return $this->hasOne(QuizFormulaModel::className(),['id'=>'quiz_type']);
+	}
 
 	public function getQuizResultsModelToStudentsModel()
 	{
@@ -25,6 +52,11 @@ class QuizResultsModel extends \app\models\table\QuizResultsTable
 	public function getQuizResultsBelongsToAssignQuiz()
 	{
 		return $this->hasOne(AssignQuizModel::className(),['id'=>'quiz_id']);
+	}	
+
+	public function getQuizResultsBelongsToQuizModel()
+	{
+		return $this->hasOne(QuizModel::className(),['id'=>'quiz_id']);
 	}	
 
 	public function getQuizResultsHasManyQuizResultsAnswer()

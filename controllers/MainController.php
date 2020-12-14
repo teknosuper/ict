@@ -43,6 +43,7 @@ class MainController extends Controller
 	
 	public function init()
 	{
+        parent::init();
 		$hostname = \app\models\HostnameClass::getHostname();
 		// $hostname = \common\models\MasterHostnameModel::getHostname();
 		if($hostname['status']==200)
