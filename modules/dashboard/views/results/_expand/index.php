@@ -15,6 +15,7 @@
                   <th>Sekolah</th>
                   <th>Semester</th>
                   <th>Year</th>
+                  <th>#</th>
                 </tr>
                 <?php if($model->assignClassroomTeacherModelHasManyAssignClassroomModel):?>
                 	<?php $i=1;?>
@@ -27,6 +28,7 @@
 	                  	<td><?= $models->assignClassroomModelBelongsToClassroomsPlanModel->classroomsPlanModelBelongsToClassroomsModel->classroomsBelongsToSchool->school_name;?></td>
 	                  	<td><?= $models->assignClassroomModelBelongsToClassroomsPlanModel->classroomsPlanModelBelongsToMasterSemesterModel->desc;?></td>
 	                  	<td><?= $models->assignClassroomModelBelongsToClassroomsPlanModel->year;?></td>
+                      <td><a data-pjax="0" href="<?= \yii\helpers\Url::toRoute(['/dashboard/results/student','student_id'=>$models->assignClassroomModelBelongsToStudentsModel->id]);?>" class="btn btn-success btn-xs"><i class="fa fa-book"></i> Lihat Hasil Belajar</a></td>
 	                </tr>
 		            <?php endforeach;?>
 	            <?php endif;?>

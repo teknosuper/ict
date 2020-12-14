@@ -16,6 +16,21 @@ use Yii;
 class QuizResultsModel extends \app\models\table\QuizResultsTable
 {
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'student_id' => Yii::t('app', 'Siswa'),
+            'quiz_id' => Yii::t('app', 'Soal'),
+            'quiz_taken' => Yii::t('app', 'Quiz Taken'),
+            'quiz_finish' => Yii::t('app', 'Quiz Finish'),
+            'status' => Yii::t('app', 'Status'),
+            'grade_point' => Yii::t('app', 'Nilai'),
+            'quiz_model' => Yii::t('app', 'Model Soal'),
+            'quiz_type' => Yii::t('app', 'Tipe Soal'),
+        ];
+    }
+
 	const QUIZ_ONLINE = 1;
 	const QUIZ_OFFLINE = 2;
 

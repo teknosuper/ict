@@ -9,26 +9,13 @@ use app\controllers\MainController;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\search\QuizResultsSearch;
 
 /**
  * ResultsController implements the CRUD actions for AssignClassroomTeacherModel model.
  */
 class ResultsController extends MainController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * Lists all AssignClassroomTeacherModel models.
@@ -41,6 +28,31 @@ class ResultsController extends MainController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionStudent()
+    {
+        $student_id = \yii::$app->request->get('student_id');
+
+        $searchModel = new QuizResultsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $lksResultsAverage = \app\models\QuizResultsModel::find()
+        ->where([
+            'student_id'=>$student_id,
+            'quiz_type'=>1,
+        ])->average('grade_point');
+        $kuisResultsAverage = \app\models\QuizResultsModel::find()
+        ->where([
+            'student_id'=>$student_id,
+            'quiz_type'=>2,
+        ])->average('grade_point');
+        return $this->render('student/index',[
+            'lksResultsAverage' => $lksResultsAverage,
+            'kuisResultsAverage' => $kuisResultsAverage,            
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);

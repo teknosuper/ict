@@ -8,7 +8,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\search\ClassroomTeacherSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Assign Classroom Teacher Models');
+$this->title = Yii::t('app', 'Hasil Belajar Siswa');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="col-md-12">
@@ -99,7 +99,40 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'filterInputOptions' => ['prompt' => 'All Year', 'class' => 'form-control', 'id' => null]
                 ],
-                'status',
+                // 'status',
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'header' => 'Actions',
+                    'headerOptions' => ['style' => 'color:#337ab7'],
+                    'template' => '{view}',
+                    'buttons' => [
+                            'view' => function ($url, $model) {
+                                return Html::a('<span class="btn btn-xs btn-success"><i class="fa fa-book"></i> Lihat Hasil Akhir</span>', $url, [
+                                            'title' => Yii::t('app', 'Lihat Hasil Akhir'),
+                                            // 'class'=>'btn modal-form',
+                                            // 'data-size' => 'modal-lg',
+                                ]);
+                            },
+
+                            // 'update' => function ($url, $model) {
+                            //     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            //                 'title' => Yii::t('app', 'update'),
+                            //                 'class'=>'btn modal-form',
+                            //                 'data-size' => 'modal-lg',
+
+                            //     ]);
+                            // },
+                            // 'delete' => function ($url, $model) {
+                            //     return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
+                            //                 'title' => Yii::t('app', 'delete'),
+                            //                 'class'=>'btn modal-form',
+                            //                 'data-size' => 'modal-lg',
+
+                            //     ]);
+                            // }
+                    ],
+
+                ],
             ],
             'responsive'=>true,
             'toggleDataOptions' => ['minCount' => 10],
