@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\search\QuizResultsSearch;
+use app\models\QuizResultsModel;
 
 /**
  * ResultsController implements the CRUD actions for AssignClassroomTeacherModel model.
@@ -33,12 +34,37 @@ class ResultsController extends MainController
         ]);
     }
 
+    protected function findQuizResultsModel($id)
+    {
+        if (($model = QuizResultsModel::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    public function actionUpdatenilai($id)
+    {
+        $model = $this->findQuizResultsModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
     public function actionStudent()
     {
         $student_id = \yii::$app->request->get('student_id');
 
         $searchModel = new QuizResultsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere([
+            'student_id'=>$student_id,
+        ]);
 
         $lksResultsAverage = \app\models\QuizResultsModel::find()
         ->where([
