@@ -45,7 +45,7 @@ ListView::widget([
     ],    
     'layout' => "{pager}\n{items}\n{summary}",
     'itemView' => function ($model, $key, $index, $widget) {
-        return $this->render('_items/_list_item',['model' => $model]);
+        return $this->render('_items/_list_item',['model' => $model,'student_id'=>$student_id]);
 
         // or just do some echo
         // return $model->title . ' posted by ' . $model->author;

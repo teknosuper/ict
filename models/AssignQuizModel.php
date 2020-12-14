@@ -70,9 +70,40 @@ class AssignQuizModel extends \app\models\table\AssignQuizTable
 
     }
 
-    public function getQuizStatus()
+    public function getQuizStatus($student_id)
     {
-        return ($this->assignQuizModelBelongsToQuizResultsModel) ? $this->assignQuizModelBelongsToQuizResultsModel->status : null;
+        $getAssignQuizModelBelongsToQuizResultsModel = $this->getAssignQuizModelBelongsToQuizResultsModel()->where(['student_id'=>$student_id])->one();
+        if($getAssignQuizModelBelongsToQuizResultsModel)
+        {
+            switch ($getAssignQuizModelBelongsToQuizResultsModel) {
+                   case 1:
+                        return 1;
+                       # code...
+                       break;
+                   
+                   default:
+                        return null;
+                       # code...
+                       break;
+               }   
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public function getQuizStatusDetail($student_id)
+    {
+        $getAssignQuizModelBelongsToQuizResultsModel = $this->getAssignQuizModelBelongsToQuizResultsModel()->where(['student_id'=>$student_id])->one();
+        if($getAssignQuizModelBelongsToQuizResultsModel)
+        {
+            return $getAssignQuizModelBelongsToQuizResultsModel->statusDetail;
+        }
+        else
+        {
+            return "<span class='label label-warning'>Belum Dikerjakan</span>";
+        }
     }
 
     public function getAssignQuizModelBelongsToQuizModel()

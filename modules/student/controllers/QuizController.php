@@ -41,9 +41,11 @@ class QuizController extends \app\controllers\MainController
                 'subject_id'=>$subject_id,
             ]);            
         }
+        $student_id = \yii::$app->user->identity->userBelongsToUserType->id;
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'student_id' => $student_id,
         ]);
 
     }
