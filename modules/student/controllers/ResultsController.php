@@ -3,6 +3,7 @@
 namespace app\modules\student\controllers;
 use Yii;
 use yii\web\Controller;
+use yii\db\Query;
 
 /**
  * Default controller for the `student` module
@@ -37,8 +38,20 @@ class ResultsController extends \app\controllers\MainController
             'student_id'=>$student_id,
             'quiz_model'=>2,
         ])->all();
+        $lksResultsAverage = \app\models\QuizResultsModel::find()
+        // ->select('sum(grade_point) as average')
+        ->where([
+            'student_id'=>$student_id,
+            'quiz_type'=>1,
+        ])->average('grade_point');
+        $kuisResultsAverage = \app\models\QuizResultsModel::find()
+        // ->select('sum(grade_point) as average')
+        ->where([
+            'student_id'=>$student_id,
+            'quiz_type'=>2,
+        ])->average('grade_point');
         // echo "<pre>";
-        // print_r($offlineResults);
+        // print_r($onlineResultsAverage);
         // echo "</pre>";
         // die;
     	return $this->render('view',[
@@ -46,6 +59,8 @@ class ResultsController extends \app\controllers\MainController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'offlineResults' => $offlineResults,
+            'lksResultsAverage' => $lksResultsAverage,
+            'kuisResultsAverage' => $kuisResultsAverage,
     	]);
     }
 }
