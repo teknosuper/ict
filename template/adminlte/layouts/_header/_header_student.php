@@ -27,6 +27,15 @@
                                 <!-- <li><a href="/student/banksoal">Bank Soal Latihan</a></li> -->
                                 <li><a href="/student/quiz">Bank Soal Quiz</a></li>
                             </ul>
+                            <ul>
+                              <?php if(!\yii::$app->user->isGuest):?>
+                                <li><a data-method="post" href="<?= \app\models\UrlClass::generateUrl('logout');?>">Keluar</a>
+                                </li>
+                              <?php else:?>
+                                <li><a href="<?= \app\models\UrlClass::generateUrl('/site/login');?>">Masuk</a>
+                                </li>
+                              <?php endif;?>
+                            </ul>
                         </div>
                     </div>
                 </div>
