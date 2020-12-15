@@ -37,6 +37,10 @@ class ResultsController extends \app\controllers\MainController
         $offlineResults = \app\models\QuizResultsModel::find()->where([
             'student_id'=>$student_id,
             'quiz_model'=>2,
+        ])->all();        
+        $onlineResults = \app\models\QuizResultsModel::find()->where([
+            'student_id'=>$student_id,
+            'quiz_model'=>1,
         ])->all();
         $lksResultsAverage = \app\models\QuizResultsModel::find()
         // ->select('sum(grade_point) as average')
@@ -59,6 +63,7 @@ class ResultsController extends \app\controllers\MainController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'offlineResults' => $offlineResults,
+            'onlineResults' => $onlineResults,
             'lksResultsAverage' => $lksResultsAverage,
             'kuisResultsAverage' => $kuisResultsAverage,
     	]);

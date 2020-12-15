@@ -44,132 +44,34 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div class="row">
 				<div class="col-md-12">				
 				      <!-- Default box -->
-				      <div class="box  box-primary box-solid">
+			      	<div class="box  box-primary box-solid">
 				        <div class="box-header with-border">
 				          <h3 class="box-title">Nilai Kuis Daring</h3>
-
-				          <div class="box-tools pull-right">
-
-				          </div>
 				        </div>
 				        <div class="box-body">
-
-				            <?php Pjax::begin(['id' => 'my_pjax']); ?>
-
-				            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-
-				            <?= GridView::widget([
-				                'dataProvider' => $dataProvider,
-				                // 'filterModel' => $searchModel,
-				                'headerRowOptions' => ['class' => 'kartik-sheet-style'],
-				                'filterRowOptions' => ['class' => 'kartik-sheet-style'],
-								// 'showPageSummary' => true,
- 								// 'showFooter' => true,
-				                'pjax' => false, // pjax is set to always true for this demo
-				                'responsive'=>false,
-				                'toolbar' =>  [
-				                    '{export}',
-				                    '{toggleData}',
-				                ],
-				                'export' => [
-				                    'fontAwesome' => true
-				                ],
-				                'columns' => [
-				                    [
-				                        'class' => 'kartik\grid\ExpandRowColumn',
-				                        'width' => '50px',
-				                        'value' => function ($model, $key, $index, $column) {
-				                            return GridView::ROW_COLLAPSED;
-				                        },
-				                        // uncomment below and comment detail if you need to render via ajax
-				                        // 'detailUrl'=>Url::to(['/student/quiz/preview/']),
-				                        'detail' => function ($model, $key, $index, $column) {
-				                            return Yii::$app->controller->renderPartial('_expand/index', ['model' => $model]);
-				                        },
-				                        'headerOptions' => ['class' => 'kartik-sheet-style'],
-				                        'expandOneOnly' => true,
-				                    ],
-				                    [
-				                        'attribute' => 'quiz_id',
-				                        'value' => function ($model) {
-				                            return ($model->assignQuizModelBelongsToQuizModel) ? $model->assignQuizModelBelongsToQuizModel->title : null;
-				                        },
-				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
-				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
-				                    ],				                    
-				                    [
-				                        'attribute' => 'quiz_model',
-				                        'value' => function ($model) {
-				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quizModelDetail : null;
-				                        },
-				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
-				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
-				                    ],				                   				                    
-				                    [
-				                        'attribute' => 'quiz_type',
-				                        'value' => function ($model) {
-				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->quizFormulaText : null;
-				                        },
-				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
-				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
-				                    ],				                   				                    
-				                    [
-				                        'label' => 'Nilai',
-				                        'attribute' => 'grade_in_point',
-							         	// 'footer' => 80,
-				                        'value' => function ($model) {
-				                            return ($model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)) ? $model->getStudentGradePoint(\yii::$app->user->identity->userBelongsToUserType->id)->grade_point : null;
-				                        },
-				                        // 'filter' => \app\models\TeachersModel::getTeachersList(),
-				                        'filterInputOptions' => ['prompt' => 'All Teachers', 'class' => 'form-control', 'id' => null]
-				                    ],
-				                    // [
-				                    //     'class' => 'yii\grid\ActionColumn',
-				                    //     'header' => 'Actions',
-				                    //     'headerOptions' => ['style' => 'color:#337ab7'],
-				                    //     'template' => '{view}',
-				                    //     'buttons' => [
-				                    //             'view' => function ($url, $model) {
-				                    //                 return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
-				                    //                             'title' => Yii::t('app', 'view'),
-				                    //                 ]);
-				                    //             },
-
-				                    //             // 'update' => function ($url, $model) {
-				                    //             //     return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
-				                    //             //                 'title' => Yii::t('app', 'update'),
-				                    //             //                 'class'=>'btn modal-form',
-				                    //             //                 'data-size' => 'modal-lg',
-
-				                    //             //     ]);
-				                    //             // },
-				                    //             // 'delete' => function ($url, $model) {
-				                    //             //     return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, [
-				                    //             //                 'title' => Yii::t('app', 'delete'),
-				                    //             //                 'class'=>'btn modal-form',
-				                    //             //                 'data-size' => 'modal-lg',
-
-				                    //             //     ]);
-				                    //             // }
-				                    //     ],
-
-				                    // ],
-				                ],
-				            ]); ?>
-				            <?php Pjax::end(); ?>
-
+			          		<table class="table table-bordered">
+				          		<?php if($onlineResults):?>
+				          				<tr>
+				          					<th>Soal</th>
+				          					<th>Model</th>
+				          					<th>Tipe Soal</th>
+				          					<th>Nilai</th>
+				          				</tr>
+									<?php foreach($onlineResults as $onlineResultsData):?>
+					          			<tr>
+					          				<td><?= ($onlineResultsData->quizResultsBelongsToQuizModel) ? $onlineResultsData->quizResultsBelongsToQuizModel->title : null;?> </td>
+					          				<td><?= $onlineResultsData->quizModelDetail;?></td>
+					          				<td><?= $onlineResultsData->quizFormulaText;?></td>
+					          				<td><?= $onlineResultsData->grade_point;?></td>
+					          			</tr>
+					          		<?php endforeach;?>
+					          	<?php endif;?>
+			          		</table>
 				        </div>
-				        <!-- /.box-body -->
-				        <div class="box-footer">
-
-				        </div>
-				        <!-- /.box-footer-->
-				      </div>
-				      <!-- /.box -->    				
-				</div>
-			</div>
-		</div>
+			        </div>
+		        </div>
+	        </div>
+        </div>
 
 
 		<div class="col-md-12">
