@@ -138,7 +138,7 @@ echo Highcharts::widget([
          'title' => ['text' => 'Nilai']
       ],
       'series' => [
-         ['name' => 'Jane', 'data' => $nilai_siswa],
+         ['name' => 'Data Nilai Akhir Siswa', 'data' => $nilai_siswa],
          // ['name' => 'John', 'data' => [5, 7, 3]]
       ]
    ]
