@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use miloschuman\highcharts\Highcharts;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AssignClassroomTeacherModel */
@@ -110,3 +111,40 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
       </div>
     </div>
+
+
+    <div class="col-md-12">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border bg-green">
+          <h3 class="box-title">Grafik <?= Html::encode($this->title) ?></h3>
+
+          <div class="box-tools pull-right">
+
+          </div>
+        </div>
+        <div class="box-body" style="overflow-x: scroll;">
+
+                <?php if($nilaiAkhirModel):?>
+<?php
+
+echo Highcharts::widget([
+   'options' => [
+      'title' => ['text' => 'Nilai Akhir'],
+      'xAxis' => [
+         'categories' => $data_siswa,
+      ],
+      'yAxis' => [
+         'title' => ['text' => 'Nilai']
+      ],
+      'series' => [
+         ['name' => 'Jane', 'data' => $nilai_siswa],
+         // ['name' => 'John', 'data' => [5, 7, 3]]
+      ]
+   ]
+]);
+?>
+                <?php endif;?>
+        </div>  
+      </div>  
+    </div>  

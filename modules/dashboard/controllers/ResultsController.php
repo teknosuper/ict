@@ -94,9 +94,18 @@ class ResultsController extends MainController
     {
         $model = $this->findModel($id);
         $nilaiAkhirModel = \app\models\NilaiAkhirModel::find()->all();
+        $data_siswa = [];
+        $nilai_siswa = [];
+        foreach($nilaiAkhirModel as $nilaiAkhirData)
+        {
+            $data_siswa[] = $nilaiAkhirData->studentIdBelongsToStudentsModel->full_name;
+            $nilai_siswa[] = (int) $nilaiAkhirData->nilai_akhir;
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'nilaiAkhirModel' => $nilaiAkhirModel,
+            'data_siswa'=>$data_siswa,
+            'nilai_siswa'=>$nilai_siswa,
         ]);
     }
 
