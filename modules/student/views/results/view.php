@@ -234,7 +234,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				        		</tr>
 				        		<tr>
 				        			<th class=" text-center">Nilai Akhir</th>
-				        			<th class="bg-red text-center"><?= ceil((ceil($lksResultsAverage)+ceil($kuisResultsAverage))/2);?></th>
+				        			<th class="bg-red text-center"><?= floor((ceil($lksResultsAverage)+ceil($kuisResultsAverage))/2);?></th>
 				        		</tr>
 				        	</table>
 				        </div>
