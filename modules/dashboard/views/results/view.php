@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\AssignClassroomTeacherModel */
 
-$this->title = $model->id;
+$this->title = "Hasil Nilai Akhir Kelas : ".$model->assignClassroomTeacherModelBelongsToClassroomsPlanModel->classroomsPlanModelBelongsToClassroomsModel->classroom_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Daftar Kelas Saya'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -27,12 +27,47 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             // 'id',
-            'classroom_id',
-            'teacher_id',
-            'subject_id',
-            'semester_id',
-            'year',
-            'status',
+            [
+                'attribute' => 'classroom_id',
+                'value' => function ($model) {
+                    return $model->assignClassroomTeacherModelBelongsToClassroomsPlanModel->classroomsPlanModelBelongsToClassroomsModel->classroom_name;
+                },
+                // 'contentOptions' => ['class' => 'bg-grey'],     // HTML attributes to customize value tag
+                // 'captionOptions' => ['tooltip' => 'Tooltip'],  // HTML attributes to customize label tag
+            ],
+            [
+                'attribute' => 'teacher_id',
+                'value' => function ($model) {
+                    return $model->assignClassroomModelBelongsToTeachersModel->full_name;
+                },
+                // 'contentOptions' => ['class' => 'bg-grey'],     // HTML attributes to customize value tag
+                // 'captionOptions' => ['tooltip' => 'Tooltip'],  // HTML attributes to customize label tag
+            ],
+            [
+                'attribute' => 'subject_id',
+                'value' => function ($model) {
+                    return $model->assignClassroomModelBelongsToMasterSubjectsModel->subjects;
+                },
+                // 'contentOptions' => ['class' => 'bg-grey'],     // HTML attributes to customize value tag
+                // 'captionOptions' => ['tooltip' => 'Tooltip'],  // HTML attributes to customize label tag
+            ],
+            [
+                'attribute' => 'semester_id',
+                'value' => function ($model) {
+                    return $model->assignClassroomTeacherModelBelongsToClassroomsPlanModel->classroomsPlanModelBelongsToMasterSemesterModel->desc;
+                },
+                // 'contentOptions' => ['class' => 'bg-grey'],     // HTML attributes to customize value tag
+                // 'captionOptions' => ['tooltip' => 'Tooltip'],  // HTML attributes to customize label tag
+            ],
+            [
+                'attribute' => 'semester_id',
+                'value' => function ($model) {
+                    return $model->assignClassroomTeacherModelBelongsToClassroomsPlanModel->currentYear;
+                },
+                // 'contentOptions' => ['class' => 'bg-grey'],     // HTML attributes to customize value tag
+                // 'captionOptions' => ['tooltip' => 'Tooltip'],  // HTML attributes to customize label tag
+            ],
+            // 'status',
         ],
     ]) ?>
 
