@@ -93,8 +93,10 @@ class ResultsController extends MainController
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $nilaiAkhirModel = \app\models\NilaiAkhirModel::find()->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'nilaiAkhirModel' => $nilaiAkhirModel,
         ]);
     }
 

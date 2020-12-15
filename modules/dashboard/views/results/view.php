@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+          <h3 class="box-title">Detail Kelas</h3>
 
           <div class="box-tools pull-right">
 
@@ -80,3 +80,33 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
       <!-- /.box -->    
 </div>
+
+    <div class="col-md-12">
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border bg-green">
+          <h3 class="box-title"><?= Html::encode($this->title) ?></h3>
+
+          <div class="box-tools pull-right">
+
+          </div>
+        </div>
+        <div class="box-body" style="overflow-x: scroll;">
+
+            <table class="table table-bordered">
+                <tr>
+                  <th>Nama Siswa</th>
+                  <th class="text-center">Nilai Akhir</th>
+                </tr>
+                <?php if($nilaiAkhirModel):?>
+                  <?php foreach($nilaiAkhirModel as $nilaiAkhirData):?>
+                    <tr>
+                      <td><?= $nilaiAkhirData->studentIdBelongsToStudentsModel->full_name;?></td>
+                      <td class="text-center"><?= $nilaiAkhirData->nilai_akhir;?></td>
+                    </tr>
+                  <?php endforeach;?>
+                <?php endif;?>
+            </table>
+        </div>
+      </div>
+    </div>
