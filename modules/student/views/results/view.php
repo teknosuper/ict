@@ -226,11 +226,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				        		</tr>
 				        		<tr>
 				        			<td>Lembar Kerja Siswa (50%)</td>
-				        			<td class=" text-center"><?= ($lksResultsAverage) ? $lksResultsAverage : 0;?></td>
+				        			<td class=" text-center"><?= ($lksResultsAverage) ? ceil($lksResultsAverage) : 0;?></td>
 				        		</tr>
 				        		<tr>
 				        			<td>Kuis (50%)</td>
-				        			<td class=" text-center"><?= ($kuisResultsAverage) ? $kuisResultsAverage : 0;?></td>
+				        			<td class=" text-center"><?= ($kuisResultsAverage) ? ceil($kuisResultsAverage) : 0;?></td>
 				        		</tr>
 				        		<tr>
 				        			<th class=" text-center">Nilai Akhir</th>
